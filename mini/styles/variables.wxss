@@ -1,0 +1,125 @@
+/* CSS 变量系统 — Academic Clarity 主题 */
+page {
+  /* ── 语义色（M3） ── */
+  --color-primary: #2b6c00;
+  --color-primary-container: #58cc02;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #1e5000;
+
+  --color-secondary: #5f5e60;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dfe1;
+  --color-on-secondary-container: #636264;
+
+  --color-tertiary: #005bc1;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #8eb3ff;
+  --color-on-tertiary-container: #004391;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-warning: #E4B86D;
+
+  --color-accent: #ff9600;
+  --color-on-accent: #ffffff;
+  --color-accent-dark: #e68700;
+
+  /* ── 表面 / 背景 ── */
+  --bg-page: #F2F2F7;
+  --bg-surface: #ffffff;
+  --bg-surface-low: #f4f3f8;
+  --bg-surface-container: #eeedf3;
+  --bg-inverse: #2f3034;
+
+  /* ── 文本 ── */
+  --text-primary: #1a1b1f;
+  --text-secondary: #8E8E93;
+  --text-disabled: #bfbfbf;
+  --text-on-inverse: #f1f0f5;
+
+  /* ── 边框 ── */
+  --border-color: #6f7b64;
+  --border-light: #becbb1;
+
+  /* ── 间距（design.md px × 2 → rpx） ── */
+  --spacing-base: 8rpx;
+  --spacing-xs: 16rpx;
+  --spacing-sm: 24rpx;
+  --spacing-md: 32rpx;
+  --spacing-lg: 48rpx;
+  --spacing-xl: 64rpx;
+  --spacing-xxl: 96rpx;
+  --spacing-gutter: 32rpx;
+  --page-margin: 40rpx;
+
+  /* ── 字体
+     --font-scale 为用户字号缩放系数（默认 1，兜底值）；
+     运行时由页面顶层的 <page-meta page-style="--font-scale: {{fontScale}}"> 设到 page 节点，
+     整页所有使用 var(--font-size-*) 的文本会随之整体缩放（详见 utils/font-size.js）。 */
+  --font-scale: 1;
+  --font-size-xs: calc(22rpx * var(--font-scale));
+  --font-size-sm: calc(26rpx * var(--font-scale));
+  --font-size-md: calc(30rpx * var(--font-scale));
+  --font-size-lg: calc(40rpx * var(--font-scale));
+  --font-size-xl: calc(48rpx * var(--font-scale));
+  --font-size-xxl: calc(64rpx * var(--font-scale));
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.47;
+  --line-height-relaxed: 1.53;
+
+  /* ── 圆角（rem × 32 → rpx） ── */
+  --border-radius-sm: 8rpx;
+  --border-radius-default: 16rpx;
+  --border-radius-md: 24rpx;
+  --border-radius-lg: 32rpx;
+  --border-radius-xl: 48rpx;
+  --border-radius-full: 9999rpx;
+  --border-radius-round: 50%;
+
+  /* ── 阴影（Elevation Level 1 / 2） ── */
+  --shadow-sm: 0 8rpx 40rpx rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 24rpx 64rpx rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 24rpx 64rpx rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 24rpx 64rpx rgba(0, 0, 0, 0.08);
+
+  /* ── 动画 ── */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* ── Z-index ── */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* ── 兼容别名（旧脚手架命名，逐步迁移） ── */
+  --primary-color: var(--color-primary-container);
+  --primary-light: var(--color-primary-container);
+  --primary-dark: var(--color-primary);
+  --secondary-color: var(--color-secondary);
+  --success-color: var(--color-primary-container);
+  --warning-color: var(--color-warning);
+  --error-color: var(--color-error);
+
+  --bg-primary: var(--bg-surface);
+  --bg-secondary: var(--bg-page);
+  --bg-light: var(--bg-surface-low);
+  --bg-hover: var(--bg-surface-container);
+  --bg-dark: var(--bg-inverse);
+
+  --text-inverse: var(--color-on-primary);
+}

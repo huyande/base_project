@@ -1,0 +1,17 @@
+<view wx:if="{{visible}}" class="privacy-popup">
+  <view class="privacy-popup__mask" catchtap="onDisagree" />
+  <view class="privacy-popup__box card-mixin">
+    <text class="privacy-popup__title">隐私保护提示</text>
+    <text class="privacy-popup__desc">为了设置你的头像，我们需要处理你的头像信息。继续操作即表示你已阅读并同意</text>
+    <text class="privacy-popup__contract" catchtap="onViewContract">{{contractName}}</text>
+    <view class="privacy-popup__actions">
+      <button class="privacy-popup__btn privacy-popup__btn--ghost" bindtap="onDisagree">拒绝</button>
+      <button
+        id="agree-btn"
+        class="privacy-popup__btn button-mixin button-primary"
+        open-type="agreePrivacyAuthorization"
+        bindagreeprivacyauthorization="onAgree"
+      >同意</button>
+    </view>
+  </view>
+</view>

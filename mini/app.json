@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/launch/launch",
+    "pages/index/index",
+    "pages/wellcome/wellcome"
+  ],
+  "resizable": true,
+  "__usePrivacyCheck__": true,
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "componentFramework": "glass-easel",
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,90 @@
+.page-header {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.page-header__bar {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-header__bar--fixed {
+  position: fixed;
+  z-index: var(--z-fixed);
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-header__nav {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-header__title-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.page-header__title {
+  max-width: 100%;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-header__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: var(--page-margin);
+  box-sizing: border-box;
+}
+
+.page-header__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-radius: var(--border-radius-round);
+  pointer-events: auto;
+}
+
+.page-header__back--active {
+  opacity: 0.75;
+  transform: scale(0.96);
+}
+
+.page-header__back-icon {
+  width: 18rpx;
+  height: 36rpx;
+  margin-left: -4rpx;
+  -webkit-mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='24' viewBox='0 0 12 24'%3E%3Cpath fill-opacity='.9' fill-rule='evenodd' d='M10 19.438L8.955 20.5l-7.666-7.79a1.02 1.02 0 0 1 0-1.42L8.955 3.5 10 4.563 2.682 12 10 19.438z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='24' viewBox='0 0 12 24'%3E%3Cpath fill-opacity='.9' fill-rule='evenodd' d='M10 19.438L8.955 20.5l-7.666-7.79a1.02 1.02 0 0 1 0-1.42L8.955 3.5 10 4.563 2.682 12 10 19.438z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-header__back {
+    transition: none;
+  }
+}

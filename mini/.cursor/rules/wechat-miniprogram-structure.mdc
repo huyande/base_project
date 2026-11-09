@@ -1,0 +1,45 @@
+# 微信小程序项目结构指南
+
+这是一个基于 Glass-Easel 组件框架的微信小程序初始化脚手架。
+
+## 核心架构文件
+- 应用入口：[app.js](mdc:app.js) - 应用生命周期和全局配置
+- 应用配置：[app.json](mdc:app.json) - 页面路由、渲染器配置、组件框架设置
+- 全局样式：[app.wxss](mdc:app.wxss) - 全局样式定义
+
+## 页面结构
+- 页面目录：[pages/](mdc:pages/) - 所有页面文件
+- 首页：[pages/index/](mdc:pages/index/) - 应用首页
+- 日志页：[pages/logs/](mdc:pages/logs/) - 日志展示页面
+
+## 组件系统
+- 组件目录：[components/](mdc:components/) - 自定义组件
+- 导航栏：[components/navigation-bar/](mdc:components/navigation-bar/) - 自定义导航栏组件
+
+## 配置
+- 统一配置：[config/env.js](mdc:config/env.js) - 请求通道/HTTP/云托管/COS/存储前缀/调试开关
+
+## 工具类系统
+- 请求客户端：[utils/request.js](mdc:utils/request.js) - 双通道（http/cloud）请求封装
+- API 层：[utils/api.js](mdc:utils/api.js) - 接口路径声明与薄封装
+- 存储管理：[utils/storage.js](mdc:utils/storage.js) - 本地存储封装
+- 字号管理：[utils/font-size.js](mdc:utils/font-size.js) - 用户字号调整（页面 mixin / 组件 Behavior）
+- 常量定义：[utils/constants.js](mdc:utils/constants.js) - 全局常量
+- 通用工具：[utils/util.js](mdc:utils/util.js) - 通用工具函数
+
+## 样式系统
+- 样式变量：[styles/variables.wxss](mdc:styles/variables.wxss) - CSS变量定义（含 --font-scale）
+- 样式混入：[styles/mixins.wxss](mdc:styles/mixins.wxss) - 可复用样式
+
+## 项目文档
+- 项目结构：[docs/project-structure.md](mdc:docs/project-structure.md) - 项目结构说明
+
+## 技术特性
+- 采用 Glass-Easel 组件框架
+- 双通道请求（wx.request / 云托管）
+- 内置用户字号调整（page-meta 设置 --font-scale 全局生效）
+- 支持微信云托管部署
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,258 @@
+/* 样式混入系统 — Academic Clarity */
+
+/* 卡片 */
+.card-mixin {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+  border: none;
+}
+
+/* 按钮 */
+.button-mixin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-fast);
+  border: none;
+}
+
+.button-primary {
+  background: var(--color-primary-container);
+  color: var(--color-on-primary);
+  box-shadow: 0 4rpx 0 var(--color-primary);
+}
+
+.button-primary:active {
+  opacity: 0.9;
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 0 var(--color-primary);
+}
+
+.button-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.button-secondary:active {
+  background: var(--bg-surface-low);
+}
+
+.button-ghost {
+  background: transparent;
+  color: var(--color-primary-container);
+  border: 2rpx solid var(--color-primary-container);
+  box-shadow: none;
+}
+
+.button-ghost:active {
+  background: rgba(88, 204, 2, 0.1);
+}
+
+/* 文本截断 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.text-ellipsis-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Flexbox 布局 */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* 输入框 */
+.input-mixin {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2rpx solid var(--bg-page);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  background: var(--bg-surface);
+  transition: var(--transition-fast);
+}
+
+.input-mixin:focus {
+  border-color: var(--color-primary-container);
+  outline: none;
+  box-shadow: 0 0 0 4rpx rgba(88, 204, 2, 0.15);
+}
+
+.input-error {
+  border-color: var(--color-error);
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 4rpx rgba(186, 26, 26, 0.15);
+}
+
+/* 列表项 */
+.list-item-mixin {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1rpx solid var(--bg-page);
+  transition: var(--transition-fast);
+}
+
+.list-item-mixin:active {
+  background: var(--bg-surface-container);
+}
+
+.list-item-mixin:last-child {
+  border-bottom: none;
+}
+
+/* 标签 / Chip */
+.tag-mixin,
+.chip-mixin {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-default);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.tag-primary,
+.chip-primary {
+  background: rgba(88, 204, 2, 0.1);
+  color: var(--color-primary-container);
+}
+
+.tag-success,
+.chip-success {
+  background: rgba(88, 204, 2, 0.1);
+  color: var(--color-primary-container);
+}
+
+.tag-warning,
+.chip-warning {
+  background: rgba(228, 184, 109, 0.15);
+  color: var(--color-warning);
+}
+
+.tag-error,
+.chip-error {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--color-error);
+}
+
+/* 进度条 */
+.progress-mixin {
+  width: 100%;
+  height: 24rpx;
+  background: var(--bg-page);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+}
+
+.progress-mixin__bar {
+  height: 100%;
+  background: var(--color-primary-container);
+  border-radius: var(--border-radius-full);
+  transition: width var(--transition-normal);
+}
+
+/* 加载 / 禁用 */
+.loading-mixin {
+  opacity: 0.6;
+}
+
+.disabled-mixin {
+  opacity: 0.5;
+}
+
+/* 毛玻璃导航栏 */
+.glass-bar-mixin {
+  background: rgba(255, 255, 255, 0.38);
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.35);
+  box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(20rpx);
+  backdrop-filter: blur(20rpx);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-bar-mixin {
+    background: rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* 毛玻璃胶囊（返回按钮 / 切换器等交互元素） */
+.glass-capsule-mixin {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1.5rpx solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08), inset 0 1rpx 0 rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(28rpx);
+  backdrop-filter: blur(28rpx);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-capsule-mixin {
+    background: rgba(255, 255, 255, 0.42);
+  }
+}

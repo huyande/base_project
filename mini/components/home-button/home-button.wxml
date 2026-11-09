@@ -1,0 +1,11 @@
+<view
+  class="home-button {{extClass}}"
+  style="{{buttonStyle}}"
+  bindtap="onHome"
+  hover-class="home-button--active"
+  hover-stay-time="100"
+  aria-role="button"
+  aria-label="首页"
+>
+  <view class="home-button__icon" style="{{iconStyle}}" aria-hidden="true"></view>
+</view>

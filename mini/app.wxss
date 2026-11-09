@@ -1,0 +1,62 @@
+/**app.wxss**/
+/* 导入样式系统 */
+@import "styles/variables.wxss";
+@import "styles/mixins.wxss";
+
+/* 全局基础样式 */
+page {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+}
+
+/* 重置默认样式 */
+page, view, text, button, input, textarea, picker, scroll-view, swiper, swiper-item, movable-area, movable-view, cover-view, cover-image {
+  box-sizing: border-box;
+}
+
+/* 全局容器样式 */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-secondary);
+}
+
+/* 页面内容容器 */
+.page-content {
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-lg);
+}
+
+/* 安全区域适配 */
+.safe-area-top {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 通用工具类 */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.m-0 { margin: 0; }
+.p-0 { padding: 0; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.pt-sm { padding-top: var(--spacing-sm); }
+.pt-md { padding-top: var(--spacing-md); }
+.pt-lg { padding-top: var(--spacing-lg); }
+.pb-sm { padding-bottom: var(--spacing-sm); }
+.pb-md { padding-bottom: var(--spacing-md); }
+.pb-lg { padding-bottom: var(--spacing-lg); } 

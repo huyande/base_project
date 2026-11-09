@@ -1,0 +1,127 @@
+# 微信小程序编码规范
+
+## JavaScript 编码规范
+
+### 文件命名
+- 页面文件：使用 kebab-case 命名（如：`example-list.js`）
+- 组件文件：使用 kebab-case 命名（如：`navigation-bar.js`）
+- 工具文件：使用 camelCase 命名（如：`fontSize.js`）
+
+### 代码组织
+- 每个功能模块独立目录
+- 工具函数按用途分类
+- 组件保持单一职责原则
+
+### API 调用规范
+```javascript
+// 推荐：使用便捷方法
+const list = await get('/api/list')
+const result = await post('/api/action', data)
+
+// 或者：使用 apiClient 实例
+const response = await apiClient.request({
+  url: '/api/list',
+  method: 'GET'
+})
+```
+
+### 工具类使用
+```javascript
+// 存储管理
+const { storageManager } = require('./utils/storage.js')
+storageManager.set('userInfo', userData)
+
+// 字号调整
+const fontSize = require('./utils/font-size.js')
+fontSize.setScale('large')
+```
+
+## WXML 模板规范
+
+### 组件使用
+- 优先使用自定义组件
+- 使用 Glass-Easel 组件框架
+- 组件属性使用 kebab-case
+
+### 数据绑定
+- 使用 `{{}}` 进行数据绑定
+- 复杂表达式使用计算属性
+- 避免在模板中进行复杂逻辑运算
+
+### 重要限制：WXML 中不能使用 JavaScript 函数
+**❌ 错误示例：**
+```xml
+<!-- 不能在 WXML 中直接调用函数或使用复杂表达式 -->
+<view wx:if="{{status === 1 && list.length > 0}}">
+<text>{{list.filter(s => s.active).length}} 条有效数据</text>
+```
+
+**✅ 正确做法：**
+```xml
+<!-- 在 JS 中预计算属性，在 WXML 中使用 -->
+<view wx:if="{{isActive}}">
+<text>{{activeCount}} 条有效数据</text>
+```
+
+**JavaScript 中的处理：**
+```javascript
+data: {
+  isActive: false,
+  activeCount: 0
+},
+methods: {
+  updateStats() {
+    const isActive = this.data.status === 1 && this.data.list.length > 0
+    const activeCount = this.data.list.filter(s => s.active).length
+    this.setData({ isActive, activeCount })
+  }
+}
+```
+
+## WXSS 样式规范
+
+### CSS 变量使用
+```css
+/* 优先使用预定义的设计令牌 */
+.my-component {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+```
+
+### 样式混入
+```css
+/* 使用预定义的样式混入 */
+.my-button {
+  /* 继承按钮基础样式 */
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+}
+```
+
+### 尺寸自适应
+- 尺寸统一用 rpx，随屏幕宽度自动缩放
+- 多列/自适应布局用 flex（可用 mixins.wxss 的 `.flex-*`）
+- 字号跟随用户设置：文本用 `var(--font-size-*)`，页面顶层放 `page-meta` 设 `--font-scale`
+
+## 项目配置规范
+
+### app.json 配置
+- 使用 Glass-Easel 组件框架
+- 配置自定义导航栏（navigationStyle: custom）
+- 如需 Skyline，补充 `renderer` 与 `rendererOptions` 并验证兼容性
+
+### 环境配置
+- 所有环境/通道配置集中在 `config/env.js`
+- `channel: 'http'` 使用本地/真实域名（wx.request）
+- `channel: 'cloud'` 使用微信云托管（wx.cloud.callContainer）
+description:
+globs:
+alwaysApply: false
+---

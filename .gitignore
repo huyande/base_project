@@ -1,0 +1,51 @@
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ---------- Dependencies ----------
+node_modules/
+miniprogram_npm/
+.pnpm-store/
+pnpm-store/
+
+# ---------- Build output ----------
+dist/
+build/
+.output/
+*.tsbuildinfo
+
+# ---------- Logs ----------
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# ---------- Test & coverage ----------
+coverage/
+.nyc_output/
+
+# ---------- IDE / editor ----------
+.idea/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ---------- Environment variables ----------
+# 只提交 .env.example 作为模板，其余一律不入库
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ---------- WeChat devtools private config ----------
+project.private.config.json
+
+# ---------- Temp ----------
+.temp/
+.tmp/

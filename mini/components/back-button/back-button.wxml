@@ -1,0 +1,11 @@
+<view
+  class="back-button {{extClass}}"
+  style="{{buttonStyle}}"
+  bindtap="onBack"
+  hover-class="back-button--active"
+  hover-stay-time="100"
+  aria-role="button"
+  aria-label="返回"
+>
+  <view class="back-button__icon" style="{{iconStyle}}" aria-hidden="true"></view>
+</view>

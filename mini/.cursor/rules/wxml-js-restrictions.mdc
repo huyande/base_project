@@ -1,0 +1,180 @@
+# WXML 中 JavaScript 使用限制规则
+
+## 重要限制
+
+### 1. WXML 中不能直接使用 JavaScript 函数
+**错误示例：**
+```xml
+<!-- ❌ 错误：不能在 WXML 中直接调用函数或复杂表达式 -->
+<text>{{status === 1 ? '启用' : '禁用'}}</text>
+<view wx:if="{{list.filter(s => s.active).length > 0}}">
+```
+
+**正确做法：**
+```xml
+<!-- ✅ 正确：在 JS 中计算好属性，在 WXML 中使用 -->
+<text>{{statusText}}</text>
+<view wx:if="{{hasActive}}">
+```
+
+### 2. 在 JavaScript 中预计算属性
+```javascript
+// 在 data 中定义计算好的属性
+data: {
+  statusText: '',
+  hasActive: false,
+  displayName: '',
+  formattedDate: ''
+},
+
+// 在方法中计算和设置这些属性
+methods: {
+  updateStatus() {
+    const statusText = this.data.status === 1 ? '启用' : '禁用'
+    const hasActive = this.data.list.filter(s => s.active).length > 0
+    this.setData({ statusText, hasActive })
+  }
+}
+```
+
+## 常见错误和解决方案
+
+### 1. 条件判断
+**错误：**
+```xml
+<view wx:if="{{item.status === 1}}">
+```
+
+**正确：**
+```xml
+<view wx:if="{{isActive}}">
+```
+
+```javascript
+data: {
+  isActive: false
+},
+methods: {
+  updateStatus() {
+    this.setData({
+      isActive: this.data.item.status === 1
+    })
+  }
+}
+```
+
+### 2. 字符串拼接
+**错误：**
+```xml
+<text>{{userInfo.firstName + ' ' + userInfo.lastName}}</text>
+```
+
+**正确：**
+```xml
+<text>{{fullName}}</text>
+```
+
+```javascript
+data: {
+  fullName: ''
+},
+methods: {
+  updateFullName() {
+    const fullName = `${this.data.userInfo.firstName} ${this.data.userInfo.lastName}`
+    this.setData({ fullName })
+  }
+}
+```
+
+### 3. 数组方法
+**错误：**
+```xml
+<view wx:if="{{list.length > 0}}">
+<text>{{list.filter(s => s.active).length}} 条有效数据</text>
+```
+
+**正确：**
+```xml
+<view wx:if="{{hasItems}}">
+<text>{{activeCount}} 条有效数据</text>
+```
+
+```javascript
+data: {
+  hasItems: false,
+  activeCount: 0
+},
+methods: {
+  updateStats() {
+    const hasItems = this.data.list.length > 0
+    const activeCount = this.data.list.filter(s => s.active).length
+
+    this.setData({
+      hasItems,
+      activeCount
+    })
+  }
+}
+```
+
+### 4. 样式计算
+**错误：**
+```xml
+<view style="width: {{100 / columnCount}}%;">
+```
+
+**正确：**
+```xml
+<view style="width: {{itemWidth}};">
+```
+
+```javascript
+data: {
+  itemWidth: '50%'
+},
+methods: {
+  updateItemWidth() {
+    const columnCount = this.data.columnCount || 2
+    const itemWidth = `${100 / columnCount}%`
+
+    this.setData({ itemWidth })
+  }
+}
+```
+
+## 最佳实践
+
+### 1. 数据预处理
+- 在 `onLoad` 或 `attached` 生命周期中预处理数据
+- 将复杂的计算逻辑放在 JavaScript 中
+- 在 `setData` 时一次性更新多个相关属性
+
+### 2. 数据驱动更新
+- 监听数据变化，及时更新计算属性
+- 在状态变化时更新显示文本
+
+### 3. 性能优化
+- 避免在 WXML 中进行复杂计算
+- 合理使用 `wx:if` 和 `wx:show`
+- 缓存计算结果，避免重复计算
+
+### 4. 代码组织
+- 将计算逻辑封装成独立的方法
+- 使用有意义的属性名称
+- 添加适当的注释说明
+
+## 检查清单
+
+在编写 WXML 时，请检查：
+
+- [ ] 是否在 WXML 中使用了 JavaScript 函数调用
+- [ ] 是否在 WXML 中使用了复杂的表达式
+- [ ] 是否在 WXML 中使用了数组方法
+- [ ] 是否在 WXML 中使用了字符串拼接
+- [ ] 是否在 WXML 中使用了条件判断
+- [ ] 是否在 JavaScript 中预计算了所有需要的属性
+- [ ] 是否在数据变化时及时更新了计算属性
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,10 @@
+<view class="page">
+  <page-header title="首页" />
+  <view class="card">
+    <view class="title">登录成功</view>
+    <view class="desc" wx:if="{{userInfo}}">
+      openId: {{userInfo.openId}}
+    </view>
+    <view class="desc" wx:else>未获取到用户信息</view>
+  </view>
+</view>

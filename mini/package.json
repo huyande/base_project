@@ -1,0 +1,19 @@
+{
+  "name": "banxingxing",
+  "version": "1.0.0",
+  "description": "微信小程序初始化脚手架：内置双通道请求（wx.request / 云托管）、本地存储、设备适配、主题系统与样式令牌，支持多端适配与云托管部署。",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:wxss": "postcss **/**/*.wxss --dir dist/ --ext .wxss",
+    "dev:wxss": "postcss **/**/*.wxss --dir dist/ --ext .wxss --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@hsuna/postcss-media-query-transform": "^1.0.0"
+  },
+  "dependencies": {
+    "cos-wx-sdk-v5": "^1.8.0"
+  }
+}

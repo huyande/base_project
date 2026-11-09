@@ -1,0 +1,12 @@
+<view class="launch-container">
+  <view class="brand-section">
+    <text class="brand-name">点点记课时</text>
+  </view>
+  <view class="loading-section">
+    <view class="loading-dots">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+  </view>
+</view>

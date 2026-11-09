@@ -1,0 +1,164 @@
+# API 和工具类使用指南
+
+## API 请求工具 ([utils/api.js](mdc:utils/api.js))
+
+### 环境与通道配置
+```javascript
+// 统一配置在 config/env.js
+// channel: 'http'  -> 使用 wx.request
+// channel: 'cloud' -> 使用 wx.cloud.callContainer（微信云托管）
+// 通道与环境解耦，可运行时切换
+```
+
+### 便捷方法
+```javascript
+const { get, post, put, del } = require('./utils/api.js')
+
+// GET 请求
+const list = await get('/api/list')
+
+// POST 请求
+const result = await post('/api/action', { id: 1 })
+
+// PUT 请求
+const updateResult = await put('/api/item/1', { name: 'xxx' })
+
+// DELETE 请求
+const deleteResult = await del('/api/item/1')
+```
+
+### 通道切换
+```javascript
+const { setChannel, getChannel } = require('./utils/api.js')
+
+// 切换到云托管通道
+setChannel('cloud')
+
+// 获取当前通道
+const channel = getChannel() // 'http' | 'cloud'
+```
+
+## 存储管理工具 ([utils/storage.js](mdc:utils/storage.js))
+
+### 基础存储操作
+```javascript
+const { storageManager } = require('./utils/storage.js')
+
+// 设置数据
+storageManager.set('userInfo', { name: '张三' })
+
+// 获取数据
+const userInfo = storageManager.get('userInfo')
+
+// 删除数据
+storageManager.remove('userInfo')
+
+// 检查是否存在
+const exists = storageManager.has('userInfo')
+```
+
+### 异步读取
+```javascript
+// get 为同步接口；异步场景使用 getAsync
+const userInfo = await storageManager.getAsync('userInfo')
+```
+
+### 缓存管理
+```javascript
+// 带过期时间的缓存（键以 cache_ 开头或显式传 expire）
+storageManager.set('cache_list', listData, {
+  expire: 24 * 60 * 60 * 1000 // 24小时过期
+})
+
+// 清理过期数据
+const clearedCount = storageManager.clearExpired()
+
+// 清理缓存数据
+const cacheCleared = storageManager.clearCache()
+
+// 获取存储使用情况
+const storageInfo = storageManager.getInfo()
+```
+
+## 字号管理工具 ([utils/font-size.js](mdc:utils/font-size.js))
+
+字号 token 定义为 `calc(基准 * var(--font-scale))`。运行时用 `page-meta` 把 `--font-scale`
+设到页面 `page` 节点，整页所有 `var(--font-size-*)` 文本自动继承缩放，**无需给每个 view 加 class**。
+默认档位在 `config/env.js` 的 `fontScale`。
+
+### 页面接入（在自己的 onLoad/onUnload 各调一行，不覆盖生命周期）
+```javascript
+const fontSize = require('./utils/font-size.js')
+Page({
+  data: {},
+  onLoad() { fontSize.bindPage(this) },   // 注册监听 + 写入 data.fontScale（数值）
+  onUnload() { fontSize.unbindPage(this) },
+})
+```
+```xml
+<page-meta page-style="--font-scale: {{fontScale}};"></page-meta>
+```
+
+### 组件读取当前缩放（可选）
+```javascript
+const { fontScaleBehavior } = require('./utils/font-size.js')
+Component({ behaviors: [fontScaleBehavior] }) // 提供 data.fontScale；behaviors 生命周期合并，不冲突
+```
+
+### 读取/设置字号
+```javascript
+const fontSize = require('./utils/font-size.js')
+
+fontSize.getScale()         // 当前档位 key
+fontSize.getScaleValue()    // 当前缩放数值（如 1.15）
+fontSize.getAvailable()     // [{ key, name, value, current }]
+fontSize.setScale('large')  // 'small' | 'normal' | 'large' | 'xlarge'
+```
+
+## 常量定义 ([utils/constants.js](mdc:utils/constants.js))
+
+### 使用常量
+```javascript
+const {
+  STORAGE_KEYS,
+  PAGINATION
+} = require('./utils/constants.js')
+
+// 存储键名
+const userInfoKey = STORAGE_KEYS.USER_INFO
+
+// 分页设置
+const pageSize = PAGINATION.DEFAULT_PAGE_SIZE
+```
+
+## 通用工具 ([utils/util.js](mdc:utils/util.js))
+
+### 常用工具函数
+```javascript
+const { 
+  formatDate, 
+  debounce, 
+  throttle,
+  deepClone,
+  isEmpty 
+} = require('./utils/util.js')
+
+// 日期格式化
+const formattedDate = formatDate(new Date(), 'YYYY-MM-DD')
+
+// 防抖函数
+const debouncedSearch = debounce(searchFunction, 300)
+
+// 节流函数
+const throttledScroll = throttle(scrollFunction, 100)
+
+// 深拷贝
+const clonedData = deepClone(originalData)
+
+// 空值检查
+const isDataEmpty = isEmpty(data)
+```
+description:
+globs:
+alwaysApply: false
+---

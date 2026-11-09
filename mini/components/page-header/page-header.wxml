@@ -1,0 +1,28 @@
+<view class="page-header {{extClass}}" style="height: {{totalHeight}}px">
+  <view class="page-header__bar glass-bar-mixin page-header__bar--fixed" style="{{barStyle}}">
+    <view class="page-header__nav" style="{{navStyle}}">
+      <view class="page-header__title-wrap" style="{{titleWrapStyle}}">
+        <text
+          wx:if="{{title}}"
+          class="page-header__title"
+          style="{{titleColor ? 'color: ' + titleColor : ''}}"
+        >{{title}}</text>
+      </view>
+
+      <view class="page-header__content">
+        <view
+          wx:if="{{back}}"
+          class="page-header__back glass-capsule-mixin"
+          style="{{buttonStyle}}"
+          bindtap="onBack"
+          hover-class="page-header__back--active"
+          hover-stay-time="100"
+          aria-role="button"
+          aria-label="返回"
+        >
+          <view class="page-header__back-icon" style="{{iconStyle}}" aria-hidden="true"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
